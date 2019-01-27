@@ -16,7 +16,7 @@ node{
 
     stage("mvn build"){
         def mvn = tool name: "maven3.0.5", type: "maven"
-        sh "'${mvn}/bin/mvn' clean install"
+        sh "mvn clean install"
     }
 
     stage("docker build"){
