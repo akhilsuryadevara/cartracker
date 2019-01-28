@@ -19,13 +19,13 @@ node{
     }
 
     stage("docker build"){
-    withDockerRegistry(credentialsId: 'Test') {
         sh "docker build -t ${DOCKERHUB_REPO}:${DOCKER_IMAGE_VERSION} ."
-    }
     }
 
     stage("docker push"){
+    withDockerRegistry(credentialsId: 'Test') {
         sh "docker push ${DOCKERHUB_REPO}:${DOCKER_IMAGE_VERSION}"
+    }
     }
 
     stage("docker service"){
