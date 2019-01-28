@@ -31,7 +31,7 @@ node{
     stage("docker service"){
         try{
             sh """
-                if[[ \$(docker service ls --filter name = ${DOCKER_SERVICE_ID} --quiet | wc -l) -eq 0 ]]; then
+                if[ \$(docker service ls --filter name = ${DOCKER_SERVICE_ID} --quiet | wc -l) -eq 0 ]; then
                     docker service create \
                      --replicas 1 \
                      --name ${DOCKER_SERVICE_ID} \
