@@ -11,7 +11,7 @@ node{
         checkout scm
 
         def GIT_COMMIT = sh(returnStdout: true, script: "git rev-parse HEAD").trim().take(11)
-        DOCKER_IMAGE_VERSION = "${BUILD_NUMBER}-{GIT_COMMIT}"
+        DOCKER_IMAGE_VERSION = "${BUILD_NUMBER}-${GIT_COMMIT}"
     }
 
     stage("mvn build"){
@@ -38,7 +38,7 @@ node{
                 else
                     docker service update \
                      --image ${DOCKERHUB_REPO}:${DOCKER_IMAGE_VERSION} \
-                     ${DOCKER_SEFVICE_ID}
+                     ${DOCKER_SERVICE_ID}
                 fi
             """
         }
