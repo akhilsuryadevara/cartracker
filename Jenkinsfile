@@ -19,7 +19,9 @@ node{
     }
 
     stage("docker build"){
+    withDockerRegistry(credentialsId: 'Test') {
         sh "docker build -t ${DOCKERHUB_REPO}:${DOCKER_IMAGE_VERSION} ."
+    }
     }
 
     stage("docker push"){
